@@ -6,4 +6,35 @@
 
 body {
   font-size: 62.5%;
+  display: flex;
+  justify-content: center;
+}
+
+.knight {
+  height: 3em;
+  position: absolute;
+}
+
+.board {
+  width: 20em;
+  height: 20em;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+}
+
+.square {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 4em;
+  width: 4em;
+}
+
+.white-square {
+  background-color: white;
+}
+
+.black-square {
+  background-color: black;
 }
