@@ -1,6 +1,5 @@
 "use strict";
 const board = document.querySelector(".board");
-
 let adjList = new Map();
 
 const addEdges = function (i, j) {
@@ -23,7 +22,7 @@ const addEdges = function (i, j) {
   }
 };
 
-function createGrid() {
+(function createGrid() {
   for (let i = 0; i <= 7; i++) {
     const createRow = document.createElement("div");
     for (let j = 7; j >= 0; j--) {
@@ -45,24 +44,20 @@ function createGrid() {
     }
     board.appendChild(createRow);
   }
-}
+})();
 
-function createKnight(coordinates) {
+const createKnight = function (coordinates) {
   const createImg = document.createElement("img");
   createImg.classList.add("knight");
   createImg.dataset.cord = `${coordinates}`;
-  createImg.src = "knight.png";
+  createImg.src = "resources/knight.png";
   const square = document.querySelector(`[data-cord='${coordinates}']`);
   square.appendChild(createImg);
-}
+};
 
-createGrid();
 createKnight("0,0");
 
 const knightMoves = function (s, e) {
-  /* 
-  REFACTOR THIS
-  */
   const breathFirst = function (start) {
     let queue = [start];
     let visited = [start];
@@ -82,9 +77,6 @@ const knightMoves = function (s, e) {
     }
     return bfs;
   };
-  /* 
-  REFACTOR THIS
-  */
 
   let path = [];
   const reconstructPath = function (s, e, bfs) {
@@ -132,12 +124,11 @@ const display = function (path) {
   }
 };
 
-const clickListener = function () {
+const clickListener = (function () {
   const squares = document.querySelectorAll(".square");
   const knightPosition = document.querySelector(".knight");
   squares.forEach((square) => {
     square.addEventListener("click", () => {
-      console.log(square);
       clearDisplay();
       removeKnight();
       createKnight(square.dataset.cord);
@@ -150,12 +141,4 @@ const clickListener = function () {
       knightPosition.dataset.cord = square.dataset.cord;
     });
   });
-};
-
-clickListener();
-
-/* 
-move function into modules
-
-html, css
-*/
+})();

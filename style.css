@@ -10,25 +10,31 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
 .display {
-  width: 30em;
-  height: 8em;
-  background-color: gray;
+  margin-top: 2em;
+  height: 12em;
+  width: 20em;
+  background-color: rgb(216, 216, 216);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid black;
 }
 
 .knight {
-  height: 3em;
+  height: 4em;
   position: absolute;
 }
 
 .board {
-  width: 20em;
-  height: 20em;
+  margin-top: 2em;
   display: grid;
   grid-template-columns: repeat(8, 1fr);
-  grid-template-rows: repeat(8, 1fr);
+  border: 3px solid black;
 }
 
 .square {
@@ -40,9 +46,9 @@ body {
 }
 
 .white-square {
-  background-color: white;
+  background-color: rgb(242, 225, 195);
 }
 
 .black-square {
-  background-color: black;
+  background-color: rgb(195, 160, 130);
 }
