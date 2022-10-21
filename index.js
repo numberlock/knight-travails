@@ -47,19 +47,22 @@ function createGrid() {
   }
 }
 
-function createKnight() {
+function createKnight(coordinates) {
   const createImg = document.createElement("img");
   createImg.classList.add("knight");
-  createImg.dataset.cord = "0,0";
+  createImg.dataset.cord = `${coordinates}`;
   createImg.src = "knight.png";
-  const square = document.querySelector("[data-cord='0,0']");
+  const square = document.querySelector(`[data-cord='${coordinates}']`);
   square.appendChild(createImg);
 }
 
 createGrid();
-createKnight();
+createKnight("0,0");
 
 const knightMoves = function (s, e) {
+  /* 
+  REFACTOR THIS
+  */
   const breathFirst = function (start) {
     let queue = [start];
     let visited = [start];
@@ -77,9 +80,11 @@ const knightMoves = function (s, e) {
         }
       }
     }
-    console.log(bfs);
     return bfs;
   };
+  /* 
+  REFACTOR THIS
+  */
 
   let path = [];
   const reconstructPath = function (s, e, bfs) {
@@ -96,4 +101,61 @@ const knightMoves = function (s, e) {
   path.unshift(e);
   return path;
 };
-console.log(knightMoves("[0,0]", "[2,1]"));
+
+const clearDisplay = function () {
+  const displayDiv = document.querySelector(".display");
+  while (displayDiv.hasChildNodes()) {
+    displayDiv.removeChild(displayDiv.lastChild);
+  }
+};
+
+const removeKnight = function () {
+  const knight = document.querySelector(".knight");
+  let knightLocation = knight.dataset.cord;
+  const square = document.querySelector(`[data-cord='${knightLocation}']`);
+  square.removeChild(square.lastChild);
+  knight;
+};
+
+const display = function (path) {
+  const displayDiv = document.querySelector(".display");
+  const moves = document.createElement("div");
+  moves.textContent = `You made it in ${
+    path.length - 1
+  } moves! Here's your path:`;
+  displayDiv.appendChild(moves);
+
+  for (let i = path.length; i >= 0; i--) {
+    const pathDiv = document.createElement("div");
+    pathDiv.textContent = path[i];
+    displayDiv.appendChild(pathDiv);
+  }
+};
+
+const clickListener = function () {
+  const squares = document.querySelectorAll(".square");
+  const knightPosition = document.querySelector(".knight");
+  squares.forEach((square) => {
+    square.addEventListener("click", () => {
+      console.log(square);
+      clearDisplay();
+      removeKnight();
+      createKnight(square.dataset.cord);
+      display(
+        knightMoves(
+          `[${knightPosition.dataset.cord}]`,
+          `[${square.dataset.cord}]`
+        )
+      );
+      knightPosition.dataset.cord = square.dataset.cord;
+    });
+  });
+};
+
+clickListener();
+
+/* 
+move function into modules
+
+html, css
+*/
