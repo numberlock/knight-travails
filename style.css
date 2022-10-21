@@ -13,6 +13,10 @@ body {
   overflow: hidden;
 }
 
+.title {
+  margin-top: 0.5em;
+}
+
 .display {
   margin-top: 2em;
   height: 12em;
