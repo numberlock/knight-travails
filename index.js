@@ -33,11 +33,11 @@ const addEdges = function (i, j) {
       adjList.set(`[${i},${j}]`, []);
       addEdges(i, j);
       if (i % 2 === 0) {
-        if (j % 2 === 0) createColumn.classList.add("white-square");
-        else createColumn.classList.add("black-square");
-      } else {
         if (j % 2 === 0) createColumn.classList.add("black-square");
         else createColumn.classList.add("white-square");
+      } else {
+        if (j % 2 === 0) createColumn.classList.add("white-square");
+        else createColumn.classList.add("black-square");
       }
 
       createRow.appendChild(createColumn);
