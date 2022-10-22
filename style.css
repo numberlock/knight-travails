@@ -15,22 +15,24 @@ body {
 
 .title {
   margin-top: 0.5em;
+  font-size: 5em;
 }
 
 .display {
+  font-size: 2em;
+  padding-top: 1em;
   margin-top: 2em;
-  height: 12em;
-  width: 20em;
+  height: 13em;
+  width: 25em;
   background-color: rgb(216, 216, 216);
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  border: 3px solid black;
+  border: 4px solid black;
 }
 
 .knight {
-  height: 4em;
+  height: 8em;
   position: absolute;
 }
 
@@ -38,15 +40,15 @@ body {
   margin-top: 2em;
   display: grid;
   grid-template-columns: repeat(8, 1fr);
-  border: 3px solid black;
+  border: 6px solid black;
 }
 
 .square {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 4em;
-  width: 4em;
+  height: 8em;
+  width: 8em;
 }
 
 .white-square {
